@@ -1,0 +1,36 @@
+package main
+
+import (
+	"fmt"
+	"time"
+	"bufio"
+	"os"
+)
+var x int
+
+func say(k int) {
+	x++
+	for i := 0; i < 30; i++ {
+		time.Sleep(1000* time.Millisecond)
+	}
+	x--
+	fmt.Printf("\nThread %d Finished \t",k)
+	fmt.Printf("Threads Remaining: %d",x)
+
+}
+
+func main() {
+	x=0
+	for i := 0; i < 200; i++ {
+
+		go say(i)
+		fmt.Println("\nStarted thread ",i)
+		time.Sleep(10* time.Millisecond)
+	}
+	fmt.Println("Started all Threads")
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter text: ")
+	text, _ := reader.ReadString('\n')
+	_=text
+
+}
